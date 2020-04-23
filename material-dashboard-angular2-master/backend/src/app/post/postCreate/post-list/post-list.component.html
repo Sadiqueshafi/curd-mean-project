@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <mat-spinner *ngIf="isLoadding"></mat-spinner>
+            <div class="col-md-6 col-sm-12 col-lg-6">
+                <mat-accordion multi="true" *ngIf="post.length>0 && !isLoadding">
+                    <mat-expansion-panel *ngFor="let p of post">
+                        <mat-expansion-panel-header>
+                                {{p.title}}
+                        </mat-expansion-panel-header>
+                        <p>{{p.content}}</p>
+                        <div class="edit-delete-button">
+                            <mat-action-row>
+                            <a [routerLink]= "['/edit',p.id]" mat-button color="accent">Edit</a>
+                            <button mat-button color="warn" (click)="deletedpost(p.id)">Delete</button>    
+                            </mat-action-row>
+                        </div>
+                        </mat-expansion-panel>
+                </mat-accordion>
+                <p class="mat-body-1" *ngIf="post.length <= 0 && !isLoadding">No Post Available</p>
+            </div>
+        </div>
+    </div>
+</div>
